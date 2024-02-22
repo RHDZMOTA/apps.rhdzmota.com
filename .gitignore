@@ -11,3 +11,6 @@ venv
 
 # Ignore mypy files
 .mypy_cache
+
+# Ignore coverage report files
+.coverage
