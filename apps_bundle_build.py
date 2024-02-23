@@ -31,10 +31,22 @@ class StreamlitPageTemplate:
     page_endpoint: str
     page_alias: Optional[str] = None
     page_description: Optional[str] = None
+    package_name: Optional[str] = None
     package_reference_frontend: Optional[str] = None
     package_reference_backend: Optional[str] = None
     callable_frontend: Optional[str] = None
     callable_backend: Optional[str] = None
+
+    def dynamic_install(self):
+        if not self.package_name:
+            raise ValueError(
+                "Cannot dynamically install package if pacakge_name is None"
+            )
+        path = os.getcwd()
+        package_path = os.path.join(path, "apps", self.package_name)
+        if not os.path.exists(package_path):
+            raise ValueError(f"Package not found: {package_path}")
+        return os.system(f"pip install -e {package_path}")
 
     def get_imports_frontend(self) -> tuple:
         if not self.package_reference_frontend:
@@ -81,9 +93,11 @@ class CLI:
     def __init__(
             self,
             apps_bundle_dirname: Optional[str] = None,
-            apps_bundle_basepath: Optional[str] = None
+            apps_bundle_basepath: Optional[str] = None,
+            disable_dynamic_install: bool = False,
     ):
         self.start = dt.datetime.utcnow()
+        self.disable_dynamic_install = disable_dynamic_install
         self.apps_bundle_dirname = os.environ.get("APPS_BUNDLE_DIRNAME", default="apps_bundle")
         self.apps_bundle_basepath = os.environ.get("APPS_BUNDLE_BASEPATH", default=".")
         self.apps_bundle_config_filename = os.environ.get("APPS_BUNDLE_CONFIG_FILENAME", default="pages.json")
@@ -124,6 +138,8 @@ class CLI:
         config = self.page_config(key=page_key)
         page_name = config.get("page_alias", page_key)
         page_template = StreamlitPageTemplate(page_name=page_name, page_endpoint=page_key, **config)
+        if not self.disable_dynamic_install:
+            page_template.dynamic_install()
         return page_template
 
     def save(self, page_key: str, overwrite_output_path: Optional[str] = None) -> bool:
