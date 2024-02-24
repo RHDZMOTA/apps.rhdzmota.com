@@ -7,5 +7,12 @@
     	"package_reference_backend": "rhdzmota.apps.hello_world.backend",
 	"callable_frontend": "view",
 	"callable_backend": "register_handlers"
+    },
+    "json_parser": {
+    	"page_alias": "Tool: JSON Parser",
+	"page_description": "Simple JSON Formatter Tooling.",
+	"package_name": "json_formatter",
+	"package_reference_frontend": "rhdzmota.apps.json_formatter.frontend",
+	"callable_frontend": "view"
     }
 }
