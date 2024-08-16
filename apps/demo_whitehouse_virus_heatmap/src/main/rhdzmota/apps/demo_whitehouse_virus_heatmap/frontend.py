@@ -101,13 +101,14 @@ class FrontendView(PageView):
                 step=1
             )
             reduce = st.checkbox("Reduce")
+            include_table = st.toggle("Display Table")
             submitted = st.form_submit_button("Register")
 
         if not submitted:
-            self.display_virus_tabular()
+            self.display_virus_tabular() if include_table else None
             self.display_virus_heatmap()
             return
         factor = -1 if reduce else 1
         self.update_virus(xpos=xpos, ypos=ypos, num=num * factor)
-        self.display_virus_tabular()
+        self.display_virus_tabular() if include_table else None
         self.display_virus_heatmap()
