@@ -21,5 +21,12 @@
 	"package_name": "json_formatter",
 	"package_reference_frontend": "rhdzmota.apps.json_formatter.frontend",
 	"callable_frontend": "FrontendView"
+    },
+    "demo_medals_heatmap": {
+    	"page_alias": "Demo: Medals Heatmap",
+	"page_description": "Demonstration of heatmaps in streamlit.",
+	"package_name": "demo_medals_heatmap",
+	"package_reference_frontend": "rhdzmota.apps.demo_medals_heatmap.frontend",
+	"callable_frontend": "FrontendView"
     }
 }
