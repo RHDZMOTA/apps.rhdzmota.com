@@ -15,17 +15,12 @@ STREAMLIT_PAGE_TEMPLATE =  textwrap.dedent(
     {front_imports}
     {back_imports}
 
-    # Set Page Config
-    st.set_page_config(
-        page_icon="./favicon.png",
-        layout="wide",
-    )
-    
-    # Start backend (if any)
-    st.cache_resource({back_callable})(page_endpoint={page_endpoint})
-
     # Execute streamlit frontend code
-    {front_callable}()
+    {front_callable}(
+        backend_request_handler=st.cache_resource({back_callable})(),
+        favicon_path="./favicon.png",
+        page_layout="wide",
+    ).view()
     """
 )
 
