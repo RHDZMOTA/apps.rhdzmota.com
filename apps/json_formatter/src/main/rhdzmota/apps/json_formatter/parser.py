@@ -26,7 +26,7 @@ class JSONParserOutput:
                 for og_key, og_val in payload.items()
                 for in_key, in_val in (
                     recursive(og_val).items()
-                    if isinstance(og_val, dict) or isinstance(og_val, list) 
+                    if isinstance(og_val, dict) or (isinstance(og_val, list) and include_lists)
                     else [(None, og_val)]
                 )
             }

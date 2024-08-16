@@ -1,6 +1,6 @@
 {
     "hello": {
-	"page_alias": "Hello",
+	"page_alias": "Demo: Hello",
 	"page_description": "Simple hello-world example application.",
 	"package_name": "hello_world",
     	"package_reference_frontend": "rhdzmota.apps.hello_world.frontend",

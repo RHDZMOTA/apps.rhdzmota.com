@@ -34,15 +34,18 @@ class Main(PageView):
     
         pages_config = self.get_pages_configs()
         st.table(
-            data=[
-                {
-                    "Page": page_config.get("page_alias", page_key),
-                    "Description": page_config.get("page_description", ""),
-                    "Streamlit Frontend Enabled": page_config.get("callable_frontend") is not None,
-                    "Tornado API Backend Enabled": page_config.get("callable_backend") is not None,
-                }
-                for page_key, page_config in pages_config.items()
-            ],
+            data=sorted(
+                [
+                    {
+                        "Page": page_config.get("page_alias", page_key),
+                        "Description": page_config.get("page_description", ""),
+                        "Streamlit Frontend Enabled": page_config.get("callable_frontend") is not None,
+                        "Tornado API Backend Enabled": page_config.get("callable_backend") is not None,
+                    }
+                    for page_key, page_config in pages_config.items()
+                ],
+                key=lambda row: row["Page"]
+            ),
         )
 
 if __name__ == "__main__":
