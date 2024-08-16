@@ -8,6 +8,13 @@
 	"callable_frontend": "FrontendView",
 	"callable_backend": "get_handler"
     },
+    "password_generator": {
+	"page_alias": "Tool: PWD Generator",
+	"page_description": "Simple Password Generator Tooling.",
+	"package_name": "password_generator",
+	"package_reference_frontend": "rhdzmota.apps.password_generator.frontend",
+	"callable_frontend": "FrontendView"
+    },
     "json_parser": {
     	"page_alias": "Tool: JSON Parser",
 	"page_description": "Simple JSON Formatter Tooling.",
