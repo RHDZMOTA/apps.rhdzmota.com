@@ -30,7 +30,7 @@
 	"callable_frontend": "FrontendView"
     },
     "demo_whitehouse_virus_heatmap": {
-    	"page_alias": "Demo: Whitehouse Virus Heatmap",
+    	"page_alias": "Demo: Whitehouse Heatmap",
 	"page_description": "Demonstration of heatmaps overlay in floor plan within streamlit.",
 	"package_name": "demo_whitehouse_virus_heatmap",
 	"package_reference_frontend": "rhdzmota.apps.demo_whitehouse_virus_heatmap.frontend",
