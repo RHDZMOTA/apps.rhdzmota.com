@@ -4,27 +4,15 @@ from typing import Optional
 
 import streamlit as st
 
+from rhdzmota.ext.streamlit_webapps.page_view import PageView
 
-@dataclass(frozen=True, slots=True)
-class Main:
-    favicon_path: Optional[str] = None
+
+class Main(PageView):
 
     def get_page_icon_kwargs(self) -> dict:
         if not self.favicon_path:
             return {}
         return {"page_icon": self.favicon_path}
-
-    def __enter__(self):
-        # Page config should only be executed ONCE and
-        # must be the first streamlit command.
-        st.set_page_config(
-            **self.get_page_icon_kwargs(),
-            **self.get_main_configs(),
-        )
-        return self
-
-    def __exit__(self, *args):
-        return
 
     @staticmethod
     @st.cache_data
@@ -58,5 +46,5 @@ class Main:
         )
 
 if __name__ == "__main__":
-    with Main(favicon_path="./favicon.png") as main:
+    with Main(favicon_path="./favicon.png", **Main.get_main_configs()) as main:
         main.view()
